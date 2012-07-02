@@ -6,6 +6,16 @@ This plugin adds the ability to define more than one task (target) in a single s
 
 When you run the Build command, a menu ask you which task you want to execute.
 
+**Update variants:**
+
+SublimeText 2 Build 2197 introduce a new option "variants" in sublime-build file.
+
+See `this link
+<http://docs.sublimetext.info/en/latest/reference/build_systems.html#variants>`_ for more info.
+
+Like this plugin, you can now have different tasks that is available on the Command Palette prefixed with "Build: ".
+
+
 How it works
 ------------
 
