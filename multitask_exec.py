@@ -34,6 +34,21 @@ class MultiTaskExecCommand(sublime_plugin.WindowCommand):
             # target args has upper priority
             task = self.mainkwargs
             task.update(self.tasks[self.tasknames[index]])
+            # Check for Windows Overrides and Merge
+            if sys.platform.startswith('win32'):
+                if task.get("windows") and isinstance(task.get("windows"), dict):
+                    task.update(task.get("windows"));
+                    task.pop("windows");
+            # Check for Linux Overrides and Merge
+            elif sys.platform.startswith('linux'):
+                if task.get("linux") and isinstance(task.get("linux"), dict):
+                    task.update(task.get("linux"));
+                    task.pop("linux");
+            # Check for OSX Overrides and Merge
+            elif sys.platform.startswith('darwin'):
+                if task.get("osx") and isinstance(task.get("osx"), dict):
+                    task.update(task.get("osx"));
+                    task.pop("osx");
             # get target command from target build (and remove it from args)
             # if not defined, use default command
             cmd = task.pop("target", DEFAULT_BUILD_CMD)
