@@ -15,16 +15,8 @@ class MultiTaskExecCommand(sublime_plugin.WindowCommand):
             self.tasks = cmd
             # store ordered tasks names
             self.tasknames = sorted(self.tasks.keys())
-            # store all build file fields            
+            # store all build file fields
             self.mainkwargs = kwargs
-            # run a specific task
-            task = self.mainkwargs.pop("task")
-            if task:
-                try:
-                    taskitem = self.tasknames.index(task)
-                except ValueError:
-                    pass                                
-                return self._quick_panel_callback(taskitem)
             # get default_task from build (and remove it from args)
             deftask = self.mainkwargs.pop("default_task", DEFAULT_BUILD_TASK)
             defitem = 0
@@ -46,18 +38,18 @@ class MultiTaskExecCommand(sublime_plugin.WindowCommand):
             # Check for Windows Overrides and Merge
             if sys.platform.startswith('win32'):
                 if task.get("windows") and isinstance(task.get("windows"), dict):
-                    task.update(task.get("windows"))
-                    task.pop("windows")
+                    task.update(task.get("windows"));
+                    task.pop("windows");
             # Check for Linux Overrides and Merge
             elif sys.platform.startswith('linux'):
                 if task.get("linux") and isinstance(task.get("linux"), dict):
-                    task.update(task.get("linux"))
-                    task.pop("linux")
+                    task.update(task.get("linux"));
+                    task.pop("linux");
             # Check for OSX Overrides and Merge
             elif sys.platform.startswith('darwin'):
                 if task.get("osx") and isinstance(task.get("osx"), dict):
-                    task.update(task.get("osx"))
-                    task.pop("osx")
+                    task.update(task.get("osx"));
+                    task.pop("osx");
             # get target command from target build (and remove it from args)
             # if not defined, use default command
             cmd = task.pop("target", DEFAULT_BUILD_CMD)
