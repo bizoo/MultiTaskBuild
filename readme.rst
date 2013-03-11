@@ -60,8 +60,8 @@ Now this is a multi task Python sublime-build::
     	},
     	"file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
     	"selector": "source.python",
-    	"default_task": "verbose"
-    	"target": "multi_task_exec",
+    	"default_task": "verbose",
+    	"target": "multi_task_exec"
     }
 
 
